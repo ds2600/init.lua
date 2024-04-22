@@ -1,11 +1,14 @@
-1. Install Neovim per dev-environment
-2. Run some commands to pull this repo:
 ```bash
 cd ~/.config/
-git clone THIS_REPO
+git clone https://github.com/ds2600/init.lua.git
 mv init.lua nvim
+
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+cd ~/.config/nvim
+nvim
+Navigate to nvim/lua/ds2600/packer.lua
+:so
+:PackerSync
 ```
-3. Install packer.nvim per instructions in repo
-4. :wq
-5. nvim
-6. :PackerSync
