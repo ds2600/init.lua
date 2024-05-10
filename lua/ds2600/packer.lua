@@ -35,4 +35,14 @@ return require('packer').startup(function(use)
             {'L3MON4D3/LuaSnip'},
         }
     }
+    use{
+        'williamboman/mason.nvim',
+        requires = {
+            'williamboman/mason-lspconfig.nvim'
+        }
+    }
+
+    use('mbbill/undotree')
+    use('theprimeagen/harpoon')
+    use('tpope/vim-commentary')
 end)
