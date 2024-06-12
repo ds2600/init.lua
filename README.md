@@ -1,4 +1,6 @@
 ```bash
+apt install xclip xsel
+
 cd ~/.config/
 git clone https://github.com/ds2600/init.lua.git
 mv init.lua nvim
