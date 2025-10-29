@@ -1,4 +1,4 @@
-local lspconfig = require('lspconfig')
+local lspconfig = vim.lsp.config
 
 local on_attach = function(client, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -9,14 +9,28 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-lspconfig.ts_ls.setup({
+vim.lsp.start({
+    name = "pyright",
+    cmd = { "pyright-langserver", "--stdio" },
+    filetypes = { "python" },
+    root_dir = vim.fs.dirname(vim.fs.find({ "package.json", "tsconfig.json" }, { upward = true })[1]),
     on_attach = on_attach,
     capabilities = capabilities,
 })
 
-lspconfig.intelephense.setup({
+vim.lsp.start({
+    name = "ts_ls",
+    cmd = { "typescript-language-server", "--stdio"},
+    root_dir = vim.fs.dirname(vim.fs.find({ "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git" }, { upward = true })[1]),
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+vim.lsp.start({
+    name = "intelephense",
     cmd = { "intelephense", "--stdio" },
     filetypes = { "php" },
+    root_dir = vim.fs.dirname(vim.fs.find({ "composer.json", ".git" }, { upward = true })[1]),
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
